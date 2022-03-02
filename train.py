@@ -153,6 +153,7 @@ def train_model(
         model = ExplainableModel(bert_dir = PLM, model_config = model_config).to(device)
       
       elif args.use_FourHidden:
+        model_config.update({"output_hidden_states": True})
         model = ConcatLastFourPoolingModel(PLM, model_config).to(device)
 
       else:
