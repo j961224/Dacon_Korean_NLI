@@ -284,17 +284,6 @@ if __name__ == "__main__":
     )
 
     parser.add_argument(
-        "--preprocessing_cmb", nargs="+", help="<Required> Set flag (example: 0 1 2)"
-    )
-
-    parser.add_argument(
-        "--mecab_flag",
-        default=False,
-        action="store_true",
-        help="input text pre-processing (default: False)",
-    )
-
-    parser.add_argument(
       '--use_ExplainableModel',
       type=bool,
       default=False,
