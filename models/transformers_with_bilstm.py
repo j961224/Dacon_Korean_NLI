@@ -4,6 +4,26 @@ import torch.nn.functional as F
 from transformers import AutoModel, AutoConfig
 from torch.cuda.amp import autocast
 
+class RobertaClassificationHead_LSTM(nn.Module):
+  def __init__(self, config):
+    super().__init__()
+    self.dense = nn.Linear(config.hidden_size*2, config.hidden_size*2)
+    classifier_dropout = (
+      config.classifier_dropout if config.classifier_dropout is not None else config.hidden_dropout_prob
+    )
+
+    self.dropout = nn.Dropout(classifier_dropout)
+    self.out_proj = nn.Linear(config.hidden_size*2,config.num_labels)
+    self.tanh = nn.Tanh()
+    
+  def forward(self,x):
+    x = self.dropout(x)
+    x = self.dense(x)
+    x = self.tanh(x)
+    x = self.dropout(x)
+    x = self.out_proj(x)
+    return x
+
 class LSTM_Model(nn.Module):
     def __init__(self, MODEL_NAME, model_config):
         super().__init__()
@@ -14,7 +34,7 @@ class LSTM_Model(nn.Module):
 
         self.lstm= nn.LSTM(input_size= self.hidden_dim, hidden_size= self.hidden_dim, num_layers= 2, dropout= 0.2,
                             batch_first= True, bidirectional= True)
-        self.fc= nn.Linear(self.hidden_dim*2, self.model_config.num_labels)
+        self.fc= RobertaClassificationHead_LSTM(model_config)
 
     @autocast()
     def forward(self, input_ids, attention_mask):
