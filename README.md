@@ -132,3 +132,9 @@ Public & Private Rank: 18/468 | 19/468
 
 * [self-explainable Model paper](https://arxiv.org/pdf/2012.01786.pdf)
 * [Last Four Hidden States Concat](https://www.kaggle.com/rhtsingh/utilizing-transformer-representations-efficiently)
+
+## 11. 회고
+
+많은 시도를 했지만, 생각보다 좋은 성적이 나오지 않았다.... -> RTT, noam scheduler, dataset 추가 등도 성능 하락을 보여줌
+
+왜 성능이 별로였는지 대회 끝났지만 알아낼 필요가 있고 이번 대회를 계기로 다음 NLP 대회는 좋은 성적을 얻고자 다짐...!!! (사실 원하는 성적이 나오지 않아 많이 아쉬웠다..)
