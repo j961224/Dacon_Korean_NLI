@@ -105,4 +105,30 @@ Masked Language Model pretrain 방식을 train 데이터를 활용해 klue/rober
 
 ## 9. 결과
 
-## 10. 
+### 9-1. Hyperparameter
+
+* Learning Rate: 2e-5
+* batch size: 16 * 2(accumulation step) = 32
+* warmup steps: 500
+* optimizers: adamw
+* scheduler: get_linear_schedule_with_warmup, noam scheduler
+
+### 9-2. Final Results
+
+Model1: **(기존 train data + KLUE Official Dev Set)** klue/roberta-large & Explainable Model +  klue/roberta-large & bilstm Model + klue/roberta-large + **(기존 train data + KLUE Official Dev Set & mlm pretrained)** klue/roberta-large + **(기존 train data + multinli 15000개 data)** klue/roberta-large + **(기존 train data + multinli 15000개 data & mlm pretrained)** klue/roberta-large & Explainable Model
+
+Model2(단일 모델): **(기존 train data + KLUE Official Dev Set)** klue/roberta-large & Explainable Model
+
+|            | Public Accuracy | Private Accuracy |
+|:----------:|:------:|:------:|
+| Model1 | 0.894 | **0.88775915** |
+| Model2 | 0.891 | 0.8871548619 |
+
+Final submission: Model1 제출
+
+Public & Private Rank: 18/468 | 19/468
+
+## 10. 참고자료
+
+* [self-explainable Model paper](https://arxiv.org/pdf/2012.01786.pdf)
+* [Last Four Hidden States Concat](https://www.kaggle.com/rhtsingh/utilizing-transformer-representations-efficiently)
