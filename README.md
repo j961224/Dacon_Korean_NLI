@@ -126,7 +126,7 @@ Model2(단일 모델): **(기존 train data + KLUE Official Dev Set)** klue/robe
 
 Final submission: Model1 제출
 
-Public & Private Rank: 18/468 | 19/468
+Public & Private Rank: 18/468 | 19/468 (상위 5%)
 
 ## 10. 참고자료
 
